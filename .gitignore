@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# General
+.env
+node_modules/
+build/
+coverage/
+dist/
+.idea/
+.vscode/
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+
+# Temporary agents/claude stuff if we don't want to track them (wait, maybe we should track docs, but let's ignore lock files if needed)
+# skills-lock.json (we can track it)
+
+# Frontend / Flutter is probably in frontend/ so it might have its own .gitignore, 
+# but just in case we can add standard Flutter ignores here:
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+/build/
+*.DS_Store
+*.swp
