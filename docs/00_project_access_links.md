@@ -28,17 +28,11 @@ Wszystkie kluczowe konta oraz infrastruktura opierają się na dedykowanym adres
 
 ---
 
-## 3. Asystent AI (Claude)
-- **Konto:** Zalogowane z adresu `superwizorai@gmail.com`
-- **Miejsce:** Tworzenie i testowanie promptów, weryfikacja logiki psychologicznej/terapeutycznej (trauma-informed).
-
----
-
-## 4. Przydatne komendy do zarządzania projektem (Terminal)
-- Sprawdzenie aktywnego środowiska Firebase: `firebase projects:list`
-- Deployment funkcji i reguł bezpieczeństwa: `firebase deploy`
-- Pobranie zmian z GitHuba: `git pull`
-- Wysłanie lokalnego kodu na GitHuba: `git push`
-
----
-> *Dokument wygenerowany w celu łatwiejszego wdrażania nowych programistów i scentralizowania wszystkich dostępów pod adresem dedykowanym.*
+## 3. Płatności i Subskrypcje (Stripe)
+- **Panel Stripe:** [Przejdź do Dashboardu (Developers -> API keys)](https://dashboard.stripe.com/test/apikeys)
+- **Logowanie:** Główne konto EUPHIRE, ale działa na dedykowanym i wydzielonym Sub-koncie o nazwie "Superwizor AI".
+- **Account ID:** `acct_1TREGgE5jzWcAIge`
+- **Klucze API (Test mode):**
+  - **Publishable key** (do frontendu): *...do uzupełnienia...*
+  - **Secret key** (do backendu): *...do uzupełnienia...*
+- **Status:** **ZWALIDOWANY ✅**. Terminal i agent AI są poprawnie podłączone przez Stripe CLI i zintegrowane oficjalnymi "skillami" zespołu Stripe.
