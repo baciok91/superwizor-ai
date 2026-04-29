@@ -55,13 +55,13 @@ Faza 0 jest "done" kiedy spełnione SĄ WSZYSTKIE poniższe:
 - [x] `go.work` poprawnie linkuje wszystkie moduły.
 - [x] `buf generate proto/` przechodzi bez błędów.
 - [x] `make lint`, `make test` działają.
-- [ ] Pierwsza migracja SQL (000001_initial_extensions) zaaplikowana na staging DB.
+- [x] Pierwsza migracja SQL (000001_initial_extensions) zaaplikowana na staging DB.
 
 ### CI/CD
 - [x] **[KOD GOTOWY]** GitHub Actions workflow `ci.yml` dodany do repo.
 - [x] **[KOD GOTOWY]** Workload Identity Federation skonfigurowane w Terraform (zero JSON keys).
-- [ ] Hello-world service deployowany na staging.
-- [ ] `curl ${SERVICE_URL}/healthz` zwraca OK.
+- [x] Hello-world service deployowany na staging.
+- [x] `curl ${SERVICE_URL}/healthz` zwraca OK.
 
 ### Documentation
 - [x] `README.md` w monorepo pozwala nowemu dev'owi zacząć pracę w 30 minut.
