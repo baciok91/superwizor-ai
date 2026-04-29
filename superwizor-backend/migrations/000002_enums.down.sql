@@ -1,0 +1,12 @@
+DROP TYPE IF EXISTS outbox_status;
+DROP TYPE IF EXISTS upload_status;
+DROP TYPE IF EXISTS session_status;
+DROP TYPE IF EXISTS contact_form;
+DROP TYPE IF EXISTS process_type;
+DROP TYPE IF EXISTS relation_status;
+DROP TYPE IF EXISTS subscription_status;
+DROP TYPE IF EXISTS payment_provider;
+DROP TYPE IF EXISTS billing_cycle;
+DROP TYPE IF EXISTS plan_tier;
+DROP TYPE IF EXISTS organization_type;
+DROP TYPE IF EXISTS user_role;

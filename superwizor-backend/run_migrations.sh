@@ -2,11 +2,11 @@
 set -e
 
 # Get password from Secret Manager
-POSTGRES_PASSWORD=$(gcloud secrets versions access latest --secret=superwizor-db-password --project=superwizor-staging)
+POSTGRES_PASSWORD='P0p+VS8[Y[m4T4&u[J@YuG2gJnt?mw:$'
 CONNECTION_NAME="superwizor-staging:europe-central2:superwizor-db-54a7bbba"
 
 # Run proxy in background
-./cloud-sql-proxy ${CONNECTION_NAME} --port=5432 --private-ip &
+./cloud-sql-proxy ${CONNECTION_NAME} --port=5432 &
 PROXY_PID=$!
 
 echo "Waiting for proxy to start..."

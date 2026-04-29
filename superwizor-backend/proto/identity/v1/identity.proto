@@ -2,17 +2,117 @@ syntax = "proto3";
 
 package identity.v1;
 
-option go_package = "github.com/superwizor-ai/backend/proto/gen/go/identity/v1";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
-message GetUserRequest {
-  string id = 1;
-}
-
-message GetUserResponse {
-  string id = 1;
-  string email = 2;
-}
+option go_package = "github.com/superwizor-ai/backend/gen/go/identity/v1;identityv1";
 
 service IdentityService {
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  // Validates Firebase JWT and returns user context
+  rpc ValidateToken(ValidateTokenRequest) returns (UserContext);
+
+  // Returns user profile by ID
+  rpc GetUser(GetUserRequest) returns (User);
+
+  // Returns user profile by Firebase UID (after login)
+  rpc GetUserByFirebaseUID(GetUserByFirebaseUIDRequest) returns (User);
+
+  // Creates user on first login (called from Firebase Auth trigger)
+  rpc CreateUser(CreateUserRequest) returns (User);
+
+  // Updates own profile
+  rpc UpdateProfile(UpdateProfileRequest) returns (User);
+
+  // RBAC: check permission on resource
+  rpc CheckPermission(CheckPermissionRequest) returns (PermissionDecision);
+
+  // Health check
+  rpc HealthCheck(google.protobuf.Empty) returns (HealthCheckResponse);
+}
+
+enum UserRole {
+  USER_ROLE_UNSPECIFIED = 0;
+  USER_ROLE_THERAPIST = 1;
+  USER_ROLE_PATIENT = 2;
+}
+
+message User {
+  string id = 1;
+  UserRole role = 2;
+  string organization_id = 3;
+  string firebase_uid = 4;
+  string email = 5;
+  string phone_number = 6;
+  bool is_email_verified = 7;
+  string first_name = 8;
+  string last_name = 9;
+  string professional_title = 10;
+  string credentials_number = 11;
+  string ui_language = 12;
+  string timezone = 13;
+  bool has_accepted_tos = 14;
+  google.protobuf.Timestamp created_at = 15;
+  string biography = 16;
+  string avatar_url = 17;
+  string default_modality_id = 18;
+  string billing_address_id = 19;
+  bool has_marketing_consent = 20;
+}
+
+message UserContext {
+  string user_id = 1;
+  string firebase_uid = 2;
+  UserRole role = 3;
+  string organization_id = 4;
+  string email = 5;
+}
+
+message ValidateTokenRequest {
+  string firebase_id_token = 1;
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message GetUserByFirebaseUIDRequest {
+  string firebase_uid = 1;
+}
+
+message CreateUserRequest {
+  string firebase_uid = 1;
+  string email = 2;
+  UserRole role = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string ui_language = 6;
+  string timezone = 7;
+  bool has_accepted_tos = 8;
+}
+
+message UpdateProfileRequest {
+  string user_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string professional_title = 4;
+  string credentials_number = 5;
+  string biography = 6;
+  string phone_number = 7;
+}
+
+message CheckPermissionRequest {
+  string user_id = 1;
+  string resource_type = 2; // "patient_file", "session", etc.
+  string resource_id = 3;
+  string action = 4; // "read", "write", "delete"
+}
+
+message PermissionDecision {
+  bool allowed = 1;
+  string reason = 2; // human-readable reason if denied
+}
+
+message HealthCheckResponse {
+  string status = 1;
+  string version = 2;
 }

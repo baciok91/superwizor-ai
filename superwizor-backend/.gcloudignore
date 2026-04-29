@@ -1,0 +1,16 @@
+.gcloudignore
+.git
+.gitignore
+.terraform/
+.terragrunt-cache/
+vendor/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.DS_Store
+*.json
+!buf.gen.yaml
+!*.example.json
+.env
+.env.local
+*.log

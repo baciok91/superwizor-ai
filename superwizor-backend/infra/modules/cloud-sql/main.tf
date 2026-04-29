@@ -19,8 +19,13 @@ resource "google_sql_database_instance" "main" {
     tier    = "db-f1-micro" # Minimal for staging/faza 0
 
     ip_configuration {
-      ipv4_enabled    = false
+      ipv4_enabled    = true
       private_network = var.network_id
+
+      authorized_networks {
+        name  = "local-machine"
+        value = "37.47.79.164/32"
+      }
     }
 
     backup_configuration {

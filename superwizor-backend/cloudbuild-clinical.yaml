@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'europe-central2-docker.pkg.dev/superwizor-staging/services/clinical-svc:v0.1.0', '-f', 'services/clinical-svc/Dockerfile', '.']
+images:
+- 'europe-central2-docker.pkg.dev/superwizor-staging/services/clinical-svc:v0.1.0'

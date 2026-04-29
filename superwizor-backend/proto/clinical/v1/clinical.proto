@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package clinical.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/superwizor-ai/backend/gen/go/clinical/v1;clinicalv1";
+
+service ClinicalService {
+    rpc CreatePatientFile(CreatePatientFileRequest) returns (PatientFile);
+    rpc GetPatientFile(GetPatientFileRequest) returns (PatientFile);
+    rpc ListPatientFiles(ListPatientFilesRequest) returns (ListPatientFilesResponse);
+    rpc UpdatePatientFile(UpdatePatientFileRequest) returns (PatientFile);
+    rpc DeletePatientFile(DeletePatientFileRequest) returns (google.protobuf.Empty);
+
+    rpc ListModalities(google.protobuf.Empty) returns (ListModalitiesResponse);
+    rpc HealthCheck(google.protobuf.Empty) returns (HealthCheckResponse);
+}
+
+enum ProcessType {
+    PROCESS_TYPE_UNSPECIFIED = 0;
+    PROCESS_TYPE_INDIVIDUAL = 1;
+    PROCESS_TYPE_COUPLE = 2;
+    PROCESS_TYPE_FAMILY = 3;
+    PROCESS_TYPE_GROUP = 4;
+}
+
+message PatientFile {
+    string id = 1;
+    string therapist_id = 2;
+    string patient_id = 3;
+    string modality_id = 4;
+    string modality_code = 5; // resolved
+    string working_alias = 6;
+    ProcessType process_type = 7;
+    string initial_complaint = 8;
+    bool is_process_closed = 9;
+    bool has_recording_consent = 10;
+    google.protobuf.Timestamp consent_given_at = 11;
+    google.protobuf.Timestamp first_consultation_at = 12;
+    string private_therapist_notes = 13;
+    google.protobuf.Timestamp created_at = 14;
+    google.protobuf.Timestamp updated_at = 15;
+}
+
+message Modality {
+    string id = 1;
+    string system_code = 2;
+    string display_name = 3;
+    bool is_supported = 4;
+}
+
+message CreatePatientFileRequest {
+    string therapist_id = 1; // walidowany przeciw token JWT
+    string modality_code = 2; // "CBT", "PSYCHO", "UNIV"
+    string working_alias = 3;
+    ProcessType process_type = 4;
+    string initial_complaint = 5;
+    bool has_recording_consent = 6;
+    string idempotency_key = 7;
+}
+
+message GetPatientFileRequest {
+    string patient_file_id = 1;
+}
+
+message ListPatientFilesRequest {
+    string therapist_id = 1;
+    int32 page_size = 2;
+    string page_token = 3;
+}
+
+message ListPatientFilesResponse {
+    repeated PatientFile patient_files = 1;
+    string next_page_token = 2;
+}
+
+message UpdatePatientFileRequest {
+    string patient_file_id = 1;
+    string working_alias = 2;
+    string initial_complaint = 3;
+    string private_therapist_notes = 4;
+    bool is_process_closed = 5;
+}
+
+message DeletePatientFileRequest {
+    string patient_file_id = 1;
+}
+
+message ListModalitiesResponse {
+    repeated Modality modalities = 1;
+}
+
+message HealthCheckResponse {
+    string status = 1;
+    string version = 2;
+}
