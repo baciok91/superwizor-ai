@@ -1,0 +1,21 @@
+go 1.26.2
+
+use (
+	./pkg/authz
+	./pkg/cryptobox
+	./pkg/errors
+	./pkg/idempotency
+	./pkg/logging
+	./pkg/observability
+	./pkg/pubsubx
+	./pkg/testutil
+	./services/ai-pipeline-svc
+	./services/analytics-svc
+	./services/api
+	./services/billing-svc
+	./services/clinical-svc
+	./services/hello-world
+	./services/identity-svc
+	./services/ingestion-svc
+	./services/notification-svc
+)

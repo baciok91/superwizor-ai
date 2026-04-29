@@ -1,0 +1,37 @@
+# Binaries
+bin/
+*.exe
+
+# Test coverage
+cov.out
+coverage.html
+
+# Go module cache
+vendor/
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+.terragrunt-cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.json
+!buf.gen.yaml
+!*.example.json
+.env
+.env.local
+
+# Logs
+*.log
+gen/
