@@ -1,3 +1,3 @@
 module github.com/superwizor-ai/backend/pkg/testutil
 
-go 1.26.2
+go 1.23
