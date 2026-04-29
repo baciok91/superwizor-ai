@@ -64,10 +64,9 @@ jobs:
       - run: make proto
         working-directory: superwizor-backend
       - name: Build and push hello-world image
-        working-directory: superwizor-backend
+        working-directory: superwizor-backend/services/hello-world
         run: |
-          docker build -t ${REGISTRY}/hello-world:${GITHUB_SHA::8} \
-            -f services/hello-world/Dockerfile .
+          docker build -t ${REGISTRY}/hello-world:${GITHUB_SHA::8} .
           docker push ${REGISTRY}/hello-world:${GITHUB_SHA::8}
       - name: Deploy to Cloud Run
         run: |
