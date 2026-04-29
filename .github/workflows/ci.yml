@@ -24,7 +24,7 @@ jobs:
         working-directory: superwizor-backend
       - uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.60
+          version: v1.61
           working-directory: superwizor-backend/services/hello-world
 
   test:
