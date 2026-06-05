@@ -1,6 +1,6 @@
 module github.com/superwizor-ai/backend/services/identity-svc
 
-go 1.25.0
+go 1.23
 
 require (
 	firebase.google.com/go/v4 v4.19.0
